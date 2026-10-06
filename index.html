@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hong Kong Live</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #f4f1ea;
+      --muted: #b8c0cc;
+      --accent: #e8b86d;
+      --border: #2c3a4e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .identity {
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .intro {
+      color: var(--muted);
+      font-size: 1.15rem;
+      line-height: 1.6;
+      max-width: 42rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      min-height: 180px;
+      padding: 1.25rem 1.35rem;
+    }
+
+    .card h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .value {
+      margin-top: 1.25rem;
+      font-size: 2.35rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .detail {
+      margin-top: 0.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .status {
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      margin-top: 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .transport-card {
+      margin-top: 0;
+    }
+
+    .secondary-cards {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .transport-times {
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 1.25rem;
+    }
+
+    .transport-time {
+      color: var(--accent);
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .air-quality-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .air-quality-station {
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    .air-quality-name {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .air-quality-reading {
+      color: var(--accent);
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Hong Kong Live</h1>
+    <p class="identity">Pang Jixiang · MSc(English) Electrical and Electronic Engineering</p>
+    <p class="intro">This dashboard shows current Hong Kong weather conditions at a glance, so you can plan the day without opening several apps.</p>
+    <section class="cards" aria-label="Dashboard cards">
+      <article class="card">
+        <h2>Temperature</h2>
+        <p class="value" id="temperature">Loading...</p>
+        <p class="detail" id="temperature-detail">Hong Kong Observatory</p>
+      </article>
+      <article class="card">
+        <h2>Humidity</h2>
+        <p class="value" id="humidity">Loading...</p>
+        <p class="detail">Hong Kong Observatory</p>
+      </article>
+      <article class="card">
+        <h2>Rainfall</h2>
+        <p class="value" id="rainfall">Loading...</p>
+        <p class="detail">Highest district total in the past hour</p>
+      </article>
+    </section>
+    <section class="secondary-cards" aria-label="Additional live information">
+      <article class="card air-quality-card" aria-label="Air quality">
+        <h2>Air Quality</h2>
+        <div class="air-quality-list">
+          <div class="air-quality-station">
+            <p class="air-quality-name" id="aqhi-central-western-name">Central/Western</p>
+            <p class="air-quality-reading" id="aqhi-central-western">—</p>
+          </div>
+          <div class="air-quality-station">
+            <p class="air-quality-name" id="aqhi-central-name">Central</p>
+            <p class="air-quality-reading" id="aqhi-central">—</p>
+          </div>
+        </div>
+        <p class="detail" id="aqhi-detail">AQHI data is temporarily unavailable.</p>
+      </article>
+      <article class="card transport-card" aria-label="Transportation">
+        <h2>Transportation</h2>
+        <div class="transport-times">
+          <p class="transport-time" id="island-line-up">—</p>
+          <p class="transport-time" id="island-line-down">—</p>
+        </div>
+        <p class="detail" id="transport-detail">MTR Island Line · HKU Station</p>
+      </article>
+    </section>
+    <p class="status" id="status" role="status">Reading Hong Kong Observatory data...</p>
+  </main>
+  <footer>Data from the Hong Kong Government and DATA.GOV.HK.</footer>
+  <script type="module" src="app.js?v=20261006-1"></script>
+</body>
+</html>
